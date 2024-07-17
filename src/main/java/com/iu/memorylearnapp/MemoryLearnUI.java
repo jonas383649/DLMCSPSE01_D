@@ -21,10 +21,10 @@ public class MemoryLearnUI extends Application {
 
     @Override
     public void start(final Stage stage) throws IOException {
-        final var loader = new FXMLLoader(MemoryLearnUI.class.getResource("/com/iu/memorylearnapp/views/hello-view.fxml"));
+        final var loader = new FXMLLoader(MemoryLearnUI.class.getResource("/com/iu/memorylearnapp/views/menu-view.fxml"));
         loader.setControllerFactory(context::getBean);
 
-        final var scene = new Scene(loader.load(), 320, 240);
+        final var scene = new Scene(loader.load(), 600, 400);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
