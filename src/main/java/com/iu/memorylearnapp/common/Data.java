@@ -1,11 +1,11 @@
 package com.iu.memorylearnapp.common;
 
-public enum ResourcePath {
-    MENU_VIEW("/com/iu/memorylearnapp/views/menu-view.fxml");
+public enum Data {
+    INITIAL_DATA("com/iu/memorylearnapp/data/initial_data.json");
 
     private final String path;
 
-    ResourcePath(final String path) {
+    Data(final String path) {
         this.path = path;
     }
 

@@ -3,18 +3,16 @@ package com.iu.memorylearnapp.entities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public class CardSetTest {
+class CardTest {
 
-    private CardSet entity;
+    private Card entity;
 
     @BeforeEach
     public void setUp() {
-        entity = new CardSet();
+        entity = new Card();
     }
 
     @Test
@@ -25,24 +23,24 @@ public class CardSetTest {
     }
 
     @Test
-    public void testCardPairs() {
-        final var cardPairs = List.of(new CardPair());
-        entity.setCardPairs(cardPairs);
-        assertSame(cardPairs, entity.getCardPairs());
+    public void testCardPair() {
+        final var cardPair = new CardPair();
+        entity.setCardPair(cardPair);
+        assertSame(cardPair, entity.getCardPair());
     }
 
     @Test
-    public void testName() {
-        final var name = "name";
-        entity.setName(name);
-        assertSame(name, entity.getName());
+    public void testContent() {
+        final var content = "content";
+        entity.setContent(content);
+        assertSame(content, entity.getContent());
     }
 
     @Test
     public void testToString() {
-        final var expected = "CardSet[id=1, name=name, cardPairs=null]";
+        final var expected = "Card[id=1, content=content]";
         entity.setId(1L);
-        entity.setName("name");
+        entity.setContent("content");
         assertEquals(expected, entity.toString());
     }
 }

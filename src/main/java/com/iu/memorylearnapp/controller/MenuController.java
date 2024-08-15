@@ -3,6 +3,7 @@ package com.iu.memorylearnapp.controller;
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.renderer.MenuItemCell;
 import com.iu.memorylearnapp.repositories.CardSetRepository;
+import com.iu.memorylearnapp.services.ResourceService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -15,6 +16,9 @@ public class MenuController {
     @Autowired
     private CardSetRepository cardSetRepository;
 
+    @Autowired
+    private ResourceService resourceService;
+
     @FXML
     private ListView<CardSet> cardSetListView;
 
@@ -23,7 +27,7 @@ public class MenuController {
         final var cardSets = cardSetRepository.findAll();
         final var items = FXCollections.observableArrayList(cardSets);
 
-        cardSetListView.setCellFactory(_ -> new MenuItemCell());
+        cardSetListView.setCellFactory(_ -> new MenuItemCell(resourceService));
         cardSetListView.setItems(items);
     }
 

@@ -24,20 +24,25 @@ class InitialDataServiceTest {
     private InitialDataService service;
 
     @Mock
-    private ObjectMapper objectMapper;
+    private ResourceService resourceService;
 
     @Mock
     private CardSetRepository cardSetRepository;
 
+    private ObjectMapper objectMapper;
+
     @BeforeEach
     void setUp() {
+        objectMapper = mock(ObjectMapper.class);
         ReflectionTestUtils.setField(service, "objectMapper", objectMapper);
     }
 
     @Test
     void testInitializeWhenNoCardSetsExist() throws Exception {
+        final var inputStream = mock(InputStream.class);
         final var cardSets = List.of(new CardSet());
 
+        when(resourceService.createInputStream(any())).thenReturn(inputStream);
         when(objectMapper.readValue(any(InputStream.class), any(TypeReference.class))).thenReturn(cardSets);
         when(cardSetRepository.count()).thenReturn(0L);
 

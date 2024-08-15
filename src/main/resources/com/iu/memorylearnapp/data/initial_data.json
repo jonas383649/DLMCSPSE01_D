@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Set 1",
+    "cardPairs": [
+      {
+        "firstCard": {
+          "content": "A"
+        },
+        "secondCard": {
+          "content": "A"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "B"
+        },
+        "secondCard": {
+          "content": "B"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Set 2",
+    "cardPairs": [
+      {
+        "firstCard": {
+          "content": "C"
+        },
+        "secondCard": {
+          "content": "C"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "D"
+        },
+        "secondCard": {
+          "content": "D"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Set 3",
+    "cardPairs": [
+      {
+        "firstCard": {
+          "content": "E"
+        },
+        "secondCard": {
+          "content": "E"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "F"
+        },
+        "secondCard": {
+          "content": "F"
+        }
+      }
+    ]
+  }
+]

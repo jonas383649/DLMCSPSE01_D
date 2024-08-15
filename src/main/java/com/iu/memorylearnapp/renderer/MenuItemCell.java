@@ -1,8 +1,9 @@
 package com.iu.memorylearnapp.renderer;
 
+import com.iu.memorylearnapp.common.View;
 import com.iu.memorylearnapp.controller.MenuItemController;
 import com.iu.memorylearnapp.entities.CardSet;
-import javafx.fxml.FXMLLoader;
+import com.iu.memorylearnapp.services.ResourceService;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 
@@ -12,8 +13,8 @@ public class MenuItemCell extends ListCell<CardSet> {
 
     private final MenuItemController controller;
 
-    public MenuItemCell() {
-        final var loader = new FXMLLoader(getClass().getResource("/com/iu/memorylearnapp/views/menu-item-view.fxml"));
+    public MenuItemCell(final ResourceService resourceService) {
+        final var loader = resourceService.createLoader(View.MENU_ITEM_VIEW);
 
         try {
             root = loader.load();

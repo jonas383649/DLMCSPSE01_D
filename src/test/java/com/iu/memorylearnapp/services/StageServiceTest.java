@@ -1,7 +1,10 @@
 package com.iu.memorylearnapp.services;
 
-import com.iu.memorylearnapp.common.ResourcePath;
+import com.iu.memorylearnapp.common.View;
 import com.iu.memorylearnapp.events.StageReadyEvent;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -19,18 +21,25 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class StageServiceTest extends ApplicationTest {
 
-    @Mock
-    private ApplicationContext context;
-
-    @Mock
-    private Stage stage;
-
     @InjectMocks
     private StageService service;
 
+    @Mock
+    private ResourceService resourceService;
+
+    private Stage stage;
+
     @BeforeEach
-    void setUp() {
-        when(context.getBean(any(Class.class))).thenAnswer(invocation -> mock((Class<?>) invocation.getArgument(0)));
+    void setUp() throws Exception {
+        final var loader = mock(FXMLLoader.class);
+        final var parent = mock(Parent.class);
+
+        stage = mock(Stage.class);
+
+        when(resourceService.createLoader(any())).thenReturn(loader);
+        when(loader.load()).thenReturn(parent);
+        when(parent.getStyleClass()).thenReturn(mock(ObservableList.class));
+
         ReflectionTestUtils.setField(service, "stage", stage);
     }
 
@@ -46,8 +55,8 @@ class StageServiceTest extends ApplicationTest {
     }
 
     @Test
-    void testLoad() {
-        service.load(ResourcePath.MENU_VIEW);
+    void testShow() throws Exception {
+        service.show(View.MENU_VIEW);
 
         verify(stage).setScene(any());
         verify(stage).show();
