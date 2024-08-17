@@ -2,6 +2,7 @@ package com.iu.memorylearnapp.common;
 
 public enum View {
     CARD_VIEW("/com/iu/memorylearnapp/views/card-view.fxml"),
+    DIFFICULTY_VIEW("/com/iu/memorylearnapp/views/difficulty-view.fxml"),
     GAME_VIEW("/com/iu/memorylearnapp/views/game-view.fxml"),
     MENU_VIEW("/com/iu/memorylearnapp/views/menu-view.fxml"),
     MENU_ITEM_VIEW("/com/iu/memorylearnapp/views/menu-item-view.fxml");

@@ -24,7 +24,7 @@ public class MenuItemControllerTest extends ApplicationTest {
     private MenuItemController controller;
 
     @Mock
-    private GameController gameController;
+    private DifficultyController difficultyController;
 
     @Mock
     private StageService stageService;
@@ -51,17 +51,17 @@ public class MenuItemControllerTest extends ApplicationTest {
     }
 
     @Test
+    public void testPlayCardSet() {
+        controller.playCardSet();
+        verify(difficultyController).setCardSet(any());
+        verify(stageService).showPopover(any());
+    }
+
+    @Test
     public void testSetCardSet() {
         final var text = "text";
         when(cardSet.getName()).thenReturn(text);
         controller.setCardSet(cardSet);
         verify(name).setText(text);
-    }
-
-    @Test
-    public void testPlayCardSet() {
-        controller.playCardSet();
-        verify(gameController).setCardSet(any());
-        verify(stageService).show(any());
     }
 }

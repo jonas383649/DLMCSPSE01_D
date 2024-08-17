@@ -3,6 +3,7 @@ package com.iu.memorylearnapp.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -28,11 +29,11 @@ public class CardSet {
     }
 
     public List<CardPair> getCardPairs() {
-        return cardPairs;
+        return new ArrayList<>(cardPairs);
     }
 
     public void setCardPairs(final List<CardPair> cardPairs) {
-        this.cardPairs = cardPairs;
+        this.cardPairs = new ArrayList<>(cardPairs);
     }
 
     public String getName() {

@@ -2,9 +2,11 @@ package com.iu.memorylearnapp.services;
 
 import com.iu.memorylearnapp.common.View;
 import com.iu.memorylearnapp.events.StageReadyEvent;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,38 +29,60 @@ class StageServiceTest extends ApplicationTest {
     @Mock
     private ResourceService resourceService;
 
+    private Parent parent;
+
+    private Scene scene;
+
     private Stage stage;
 
     @BeforeEach
-    void setUp() throws Exception {
+    public void setUp() throws Exception {
         final var loader = mock(FXMLLoader.class);
-        final var parent = mock(Parent.class);
 
+        parent = mock(Parent.class);
+        scene = mock(Scene.class);
         stage = mock(Stage.class);
 
-        when(resourceService.createLoader(any())).thenReturn(loader);
         when(loader.load()).thenReturn(parent);
-        when(parent.getStyleClass()).thenReturn(mock(ObservableList.class));
+        when(resourceService.createLoader(any())).thenReturn(loader);
 
+        ReflectionTestUtils.setField(service, "parent", parent);
+        ReflectionTestUtils.setField(service, "scene", scene);
         ReflectionTestUtils.setField(service, "stage", stage);
     }
 
     @Test
-    void testOnApplicationEvent() {
+    public void testOnApplicationEvent() {
         final var event = new StageReadyEvent(stage);
+
+        when(parent.getStyleClass()).thenReturn(mock(ObservableList.class));
 
         service.onApplicationEvent(event);
 
         verify(stage).setTitle(anyString());
+        verify(stage).setHeight(anyDouble());
+        verify(stage).setWidth(anyDouble());
+        verify(stage).show();
+    }
+
+    @Test
+    public void testShow() {
+        when(parent.getStyleClass()).thenReturn(mock(ObservableList.class));
+
+        service.show(View.MENU_VIEW);
+
+        verify(parent).requestFocus();
         verify(stage).setScene(any());
         verify(stage).show();
     }
 
     @Test
-    void testShow() throws Exception {
-        service.show(View.MENU_VIEW);
+    public void testShowPopover() {
+        when(scene.widthProperty()).thenReturn(new SimpleDoubleProperty(1));
+        when(scene.heightProperty()).thenReturn(new SimpleDoubleProperty(1));
 
-        verify(stage).setScene(any());
-        verify(stage).show();
+        service.showPopover(View.MENU_VIEW);
+
+        verify(scene).setRoot(any());
     }
 }

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 public class MenuItemController {
 
     @Autowired
-    private GameController gameController;
+    private DifficultyController difficultyController;
 
     @Autowired
     private StageService stageService;
@@ -32,20 +32,19 @@ public class MenuItemController {
 
     private CardSet cardSet;
 
-    public void setCardSet(final CardSet cardSet) {
-        this.cardSet = cardSet;
-        this.name.setText(cardSet.getName());
-    }
-
     @FXML
     public void playCardSet() {
-        gameController.setCardSet(cardSet);
-        gameController.setGoal(2);
-        stageService.show(View.GAME_VIEW);
+        difficultyController.setCardSet(cardSet);
+        stageService.showPopover(View.DIFFICULTY_VIEW);
     }
 
     @FXML
     public void editCardSet() {
         System.out.println("Edit card set: " + cardSet.getName());
+    }
+
+    public void setCardSet(final CardSet cardSet) {
+        this.cardSet = cardSet;
+        this.name.setText(cardSet.getName());
     }
 }

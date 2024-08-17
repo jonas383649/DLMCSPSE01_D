@@ -28,7 +28,7 @@ public class CardSetTest {
     public void testCardPairs() {
         final var cardPairs = List.of(new CardPair());
         entity.setCardPairs(cardPairs);
-        assertSame(cardPairs, entity.getCardPairs());
+        assertEquals(cardPairs, entity.getCardPairs());
     }
 
     @Test
