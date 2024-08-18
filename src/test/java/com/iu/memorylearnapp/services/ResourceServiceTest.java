@@ -38,7 +38,7 @@ class ResourceServiceTest {
 
     @Test
     public void testCreateInputStream() throws Exception {
-        final var inputStream = service.createInputStream(Data.INITIAL_DATA);
+        final var inputStream = service.createInputStream(Data.INITIAL);
         assertNotNull(inputStream);
     }
 }

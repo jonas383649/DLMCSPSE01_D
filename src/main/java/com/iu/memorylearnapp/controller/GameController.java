@@ -71,7 +71,7 @@ public class GameController {
 
     @FXML
     public void quitGame() {
-        stageService.show(View.MENU_VIEW);
+        stageService.show(View.MENU);
         stopTimer();
     }
 
@@ -154,7 +154,7 @@ public class GameController {
     }
 
     private Node createCardView(final Card card) {
-        final var loader = resourceService.createLoader(View.CARD_VIEW);
+        final var loader = resourceService.createLoader(View.CARD);
 
         try {
             final Node root = loader.load();

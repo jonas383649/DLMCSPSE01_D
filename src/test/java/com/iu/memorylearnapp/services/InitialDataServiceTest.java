@@ -32,13 +32,13 @@ class InitialDataServiceTest {
     private ObjectMapper objectMapper;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         objectMapper = mock(ObjectMapper.class);
         ReflectionTestUtils.setField(service, "objectMapper", objectMapper);
     }
 
     @Test
-    void testInitializeWhenNoCardSetsExist() throws Exception {
+    public void testInitializeWhenNoCardSetsExist() throws Exception {
         final var inputStream = mock(InputStream.class);
         final var cardSets = List.of(new CardSet());
 
@@ -53,7 +53,7 @@ class InitialDataServiceTest {
     }
 
     @Test
-    void testInitializeWhenCardSetsExist() throws Exception {
+    public void testInitializeWhenCardSetsExist() throws Exception {
         when(cardSetRepository.count()).thenReturn(1L);
 
         service.initialize();

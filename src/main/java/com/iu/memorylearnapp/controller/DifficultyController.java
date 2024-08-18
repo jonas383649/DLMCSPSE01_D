@@ -73,6 +73,6 @@ public class DifficultyController {
         gameController.setCardSet(cardSet);
         gameController.setGoal(goal);
 
-        stageService.show(View.GAME_VIEW);
+        stageService.show(View.GAME);
     }
 }

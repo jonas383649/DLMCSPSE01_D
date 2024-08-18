@@ -1,9 +1,11 @@
 package com.iu.memorylearnapp.controller;
 
+import com.iu.memorylearnapp.common.View;
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.renderer.MenuItemCell;
 import com.iu.memorylearnapp.repositories.CardSetRepository;
 import com.iu.memorylearnapp.services.ResourceService;
+import com.iu.memorylearnapp.services.StageService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -17,7 +19,13 @@ public class MenuController {
     private CardSetRepository cardSetRepository;
 
     @Autowired
+    private EditorController editorController;
+
+    @Autowired
     private ResourceService resourceService;
+
+    @Autowired
+    private StageService stageService;
 
     @FXML
     private ListView<CardSet> cardSetListView;
@@ -33,6 +41,7 @@ public class MenuController {
 
     @FXML
     public void createCardSet() {
-        System.out.println("Create card set");
+        editorController.setCardSet(new CardSet());
+        stageService.show(View.EDITOR);
     }
 }

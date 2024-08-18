@@ -4,8 +4,6 @@ import com.iu.memorylearnapp.common.View;
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.services.StageService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,32 +17,30 @@ public class MenuItemController {
     private DifficultyController difficultyController;
 
     @Autowired
+    private EditorController editorController;
+
+    @Autowired
     private StageService stageService;
 
     @FXML
-    private HBox content;
-
-    @FXML
     private Text name;
-
-    @FXML
-    private Button editButton;
 
     private CardSet cardSet;
 
     @FXML
     public void playCardSet() {
         difficultyController.setCardSet(cardSet);
-        stageService.showPopover(View.DIFFICULTY_VIEW);
+        stageService.showPopover(View.DIFFICULTY);
     }
 
     @FXML
     public void editCardSet() {
-        System.out.println("Edit card set: " + cardSet.getName());
+        editorController.setCardSet(cardSet);
+        stageService.show(View.EDITOR);
     }
 
     public void setCardSet(final CardSet cardSet) {
-        this.cardSet = cardSet;
         this.name.setText(cardSet.getName());
+        this.cardSet = cardSet;
     }
 }

@@ -1,7 +1,7 @@
 package com.iu.memorylearnapp.common;
 
 public enum Data {
-    INITIAL_DATA("com/iu/memorylearnapp/data/initial_data.json");
+    INITIAL("com/iu/memorylearnapp/data/initial_data.json");
 
     private final String path;
 

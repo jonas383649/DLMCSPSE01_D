@@ -29,11 +29,13 @@ public class CardPair {
     private Card secondCard;
 
     public CardPair() {
+        this(null);
     }
 
-    public CardPair(final Card firstCard, final Card secondCard) {
-        this.firstCard = firstCard;
-        this.secondCard = secondCard;
+    public CardPair(final CardSet cardSet) {
+        firstCard = new Card(this);
+        secondCard = new Card(this);
+        this.cardSet = cardSet;
     }
 
     public Long getId() {

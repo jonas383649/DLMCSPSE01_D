@@ -69,7 +69,7 @@ class StageServiceTest extends ApplicationTest {
     public void testShow() {
         when(parent.getStyleClass()).thenReturn(mock(ObservableList.class));
 
-        service.show(View.MENU_VIEW);
+        service.show(View.MENU);
 
         verify(parent).requestFocus();
         verify(stage).setScene(any());
@@ -81,7 +81,7 @@ class StageServiceTest extends ApplicationTest {
         when(scene.widthProperty()).thenReturn(new SimpleDoubleProperty(1));
         when(scene.heightProperty()).thenReturn(new SimpleDoubleProperty(1));
 
-        service.showPopover(View.MENU_VIEW);
+        service.showPopover(View.MENU);
 
         verify(scene).setRoot(any());
     }

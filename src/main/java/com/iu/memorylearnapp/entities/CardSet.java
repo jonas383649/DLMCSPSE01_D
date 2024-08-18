@@ -20,6 +20,19 @@ public class CardSet {
 
     private String name;
 
+    public CardSet() {
+        this(null);
+    }
+
+    public CardSet(final String name) {
+        this(name, new ArrayList<>());
+    }
+
+    public CardSet(final String name, final List<CardPair> cardPairs) {
+        this.cardPairs = cardPairs;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
@@ -29,11 +42,11 @@ public class CardSet {
     }
 
     public List<CardPair> getCardPairs() {
-        return new ArrayList<>(cardPairs);
+        return cardPairs;
     }
 
     public void setCardPairs(final List<CardPair> cardPairs) {
-        this.cardPairs = new ArrayList<>(cardPairs);
+        this.cardPairs = cardPairs;
     }
 
     public String getName() {

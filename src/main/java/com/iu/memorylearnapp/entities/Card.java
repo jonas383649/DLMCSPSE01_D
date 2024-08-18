@@ -19,6 +19,14 @@ public class Card {
 
     private String content;
 
+    public Card() {
+        this(null);
+    }
+
+    public Card(final CardPair cardPair) {
+        this.cardPair = cardPair;
+    }
+
     public Long getId() {
         return id;
     }

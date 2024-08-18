@@ -34,7 +34,7 @@ public class InitialDataService {
     }
 
     private void loadCardSetData() throws Exception {
-        final var inputStream = resourceService.createInputStream(Data.INITIAL_DATA);
+        final var inputStream = resourceService.createInputStream(Data.INITIAL);
         final var cardSets = objectMapper.readValue(inputStream, new TypeReference<List<CardSet>>() {});
 
         cardSetRepository.saveAll(cardSets);

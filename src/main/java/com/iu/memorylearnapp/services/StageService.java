@@ -80,6 +80,6 @@ public class StageService implements ApplicationListener<StageReadyEvent> {
         stage.setHeight(700);
         stage.setWidth(1000);
 
-        show(View.MENU_VIEW);
+        show(View.MENU);
     }
 }

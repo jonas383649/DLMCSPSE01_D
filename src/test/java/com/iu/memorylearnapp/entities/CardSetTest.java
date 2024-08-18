@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CardSetTest {
 
@@ -15,6 +14,24 @@ public class CardSetTest {
     @BeforeEach
     public void setUp() {
         entity = new CardSet();
+    }
+
+    @Test
+    public void testConstructor() {
+        final var cardPairs = List.of(new CardPair());
+        final var name = "name";
+
+        entity = new CardSet();
+        assertEquals(0, entity.getCardPairs().size());
+        assertNull(entity.getName());
+
+        entity = new CardSet(name);
+        assertEquals(0, entity.getCardPairs().size());
+        assertSame(name, entity.getName());
+
+        entity = new CardSet(name, cardPairs);
+        assertSame(cardPairs, entity.getCardPairs());
+        assertSame(name, entity.getName());
     }
 
     @Test
@@ -40,7 +57,7 @@ public class CardSetTest {
 
     @Test
     public void testToString() {
-        final var expected = "CardSet[id=1, name=name, cardPairs=null]";
+        final var expected = "CardSet[id=1, name=name, cardPairs=[]]";
         entity.setId(1L);
         entity.setName("name");
         assertEquals(expected, entity.toString());

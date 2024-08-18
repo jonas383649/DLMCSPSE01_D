@@ -1,7 +1,7 @@
 package com.iu.memorylearnapp.renderer;
 
-import com.iu.memorylearnapp.controller.MenuItemController;
-import com.iu.memorylearnapp.entities.CardSet;
+import com.iu.memorylearnapp.controller.EditorItemController;
+import com.iu.memorylearnapp.entities.CardPair;
 import com.iu.memorylearnapp.services.ResourceService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
@@ -14,11 +14,11 @@ import org.testfx.framework.junit5.ApplicationTest;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class MenuItemCellTest extends ApplicationTest {
+class EditorItemCellTest extends ApplicationTest {
 
-    private MenuItemCell cell;
+    private EditorItemCell cell;
 
-    private MenuItemController controller;
+    private EditorItemController controller;
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -26,25 +26,25 @@ class MenuItemCellTest extends ApplicationTest {
         final var resourceService = mock(ResourceService.class);
         final var root = mock(HBox.class);
 
-        controller = mock(MenuItemController.class);
+        controller = mock(EditorItemController.class);
 
         when(resourceService.createLoader(any())).thenReturn(loader);
         when(loader.getController()).thenReturn(controller);
         when(loader.load()).thenReturn(root);
 
-        cell = new MenuItemCell(resourceService);
+        cell = new EditorItemCell(resourceService);
     }
 
     @Test
     public void testUpdateItemWhenItemIsPresent() {
-        final var item = new CardSet();
+        final var item = new CardPair();
         cell.updateItem(item, false);
-        verify(controller).setCardSet(item);
+        verify(controller).setCardPair(item);
     }
 
     @Test
     public void testUpdateItemWhenItemIsEmpty() {
         cell.updateItem(null, true);
-        verify(controller, never()).setCardSet(any());
+        verify(controller, never()).setCardPair(any());
     }
 }

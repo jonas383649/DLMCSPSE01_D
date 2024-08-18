@@ -2,6 +2,7 @@ package com.iu.memorylearnapp.controller;
 
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.repositories.CardSetRepository;
+import com.iu.memorylearnapp.services.StageService;
 import javafx.scene.control.ListView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,12 @@ class MenuControllerTest extends ApplicationTest {
     @Mock
     private CardSetRepository cardSetRepository;
 
+    @Mock
+    private EditorController editorController;
+
+    @Mock
+    private StageService stageService;
+
     private ListView<CardSet> cardSetListView;
 
     @BeforeEach
@@ -34,7 +41,7 @@ class MenuControllerTest extends ApplicationTest {
     }
 
     @Test
-    void testInitialize() {
+    public void testInitialize() {
         controller.initialize();
 
         verify(cardSetListView).setCellFactory(any());
@@ -43,7 +50,9 @@ class MenuControllerTest extends ApplicationTest {
     }
 
     @Test
-    void testCreateCardSet() {
+    public void testCreateCardSet() {
         controller.createCardSet();
+        verify(editorController).setCardSet(any());
+        verify(stageService).show(any());
     }
 }

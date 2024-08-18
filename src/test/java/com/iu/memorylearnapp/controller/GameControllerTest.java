@@ -45,7 +45,7 @@ class GameControllerTest extends ApplicationTest {
     private Label pairsLabel;
 
     private Label timeLabel;
-    
+
     private Timer timer;
 
     @BeforeEach
@@ -64,7 +64,7 @@ class GameControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void initialize() throws Exception {
+    public void testInitialize() throws Exception {
         final var cardSet = mockCardSet();
         final var loader = mockLoader();
 
@@ -82,7 +82,7 @@ class GameControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void quitGame() {
+    public void testQuitGame() {
         controller.quitGame();
 
         verify(stageService).show(any());
@@ -90,7 +90,7 @@ class GameControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void checkCardWhenNoCardIsSelected() {
+    public void testCheckCardWhenNoCardIsSelected() {
         final var cardController = mock(CardController.class);
 
         controller.checkCard(cardController);
@@ -102,7 +102,7 @@ class GameControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void checkCardWhenMatchingCardIsSelected() {
+    public void testCheckCardWhenMatchingCardIsSelected() {
         final var cardController = mockCardController();
         final var selected = mockCardController();
 
@@ -126,7 +126,7 @@ class GameControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void checkCardWhenNoMatchingCardIsSelected() {
+    public void testCheckCardWhenNoMatchingCardIsSelected() {
         final var cardController = mockCardController();
         final var selected = mockCardController();
 
@@ -142,7 +142,7 @@ class GameControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void setCardSet() {
+    public void testSetCardSet() {
         final var cardSet = mock(CardSet.class);
         controller.setCardSet(cardSet);
         final var cardSetField = ReflectionTestUtils.getField(controller, "cardSet");
@@ -150,7 +150,7 @@ class GameControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void setGoal() {
+    public void testSetGoal() {
         final var goal = 10;
         controller.setGoal(goal);
         final var goalField = ReflectionTestUtils.getField(controller, "goal");

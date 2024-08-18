@@ -3,8 +3,8 @@ package com.iu.memorylearnapp.entities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class CardPairTest {
 
@@ -13,6 +13,17 @@ class CardPairTest {
     @BeforeEach
     public void setUp() {
         entity = new CardPair();
+    }
+
+    @Test
+    public void testConstructor() {
+        final var cardSet = mock(CardSet.class);
+
+        entity = new CardPair();
+        assertNull(entity.getCardSet());
+
+        entity = new CardPair(cardSet);
+        assertSame(cardSet, entity.getCardSet());
     }
 
     @Test
@@ -45,7 +56,8 @@ class CardPairTest {
 
     @Test
     public void testToString() {
-        final var expected = "CardPair[id=1, firstCard=null, secondCard=null]";
+        final var card = "Card[id=null, content=null]";
+        final var expected = "CardPair[id=1, firstCard=" + card + ", secondCard=" + card + "]";
         entity.setId(1L);
         assertEquals(expected, entity.toString());
     }
