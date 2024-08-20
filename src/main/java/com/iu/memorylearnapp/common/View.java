@@ -7,7 +7,8 @@ public enum View {
     EDITOR_ITEM("/com/iu/memorylearnapp/views/editor-item-view.fxml"),
     GAME("/com/iu/memorylearnapp/views/game-view.fxml"),
     MENU("/com/iu/memorylearnapp/views/menu-view.fxml"),
-    MENU_ITEM("/com/iu/memorylearnapp/views/menu-item-view.fxml");
+    MENU_ITEM("/com/iu/memorylearnapp/views/menu-item-view.fxml"),
+    STATISTIC("/com/iu/memorylearnapp/views/statistic-view.fxml");
 
     private final String path;
 

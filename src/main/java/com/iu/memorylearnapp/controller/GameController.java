@@ -5,6 +5,8 @@ import com.iu.memorylearnapp.entities.Card;
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.services.ResourceService;
 import com.iu.memorylearnapp.services.StageService;
+import com.iu.memorylearnapp.services.StatisticService;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -25,6 +27,12 @@ public class GameController {
 
     @Autowired
     private ResourceService resourceService;
+
+    @Autowired
+    private StatisticController statisticController;
+
+    @Autowired
+    private StatisticService statisticService;
 
     @Autowired
     private StageService stageService;
@@ -113,6 +121,7 @@ public class GameController {
 
         if (pairs == goal) {
             stopTimer();
+            stopGame();
         }
     }
 
@@ -130,16 +139,22 @@ public class GameController {
         selected = null;
     }
 
+    private void stopGame() {
+        statisticController.setCardSet(cardSet);
+        statisticService.updateStatistic(cardSet, time, moves);
+        stageService.showPopover(View.STATISTIC);
+    }
+
     private void updateMovesLabel() {
-        movesLabel.setText("Züge: " + moves);
+        Platform.runLater(() -> movesLabel.setText("Züge: " + moves));
     }
 
     private void updatePairsLabel() {
-        pairsLabel.setText("Paare: " + pairs + "/" + goal);
+        Platform.runLater(() -> pairsLabel.setText("Paare: " + pairs + "/" + goal));
     }
 
     private void updateTimeLabel() {
-        timeLabel.setText("Zeit: " + time + "s");
+        Platform.runLater(() -> timeLabel.setText("Zeit: " + time + "s"));
     }
 
     private void createCardsView() {

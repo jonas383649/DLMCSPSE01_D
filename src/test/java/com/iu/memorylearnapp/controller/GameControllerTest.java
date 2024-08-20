@@ -5,6 +5,7 @@ import com.iu.memorylearnapp.entities.CardPair;
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.services.ResourceService;
 import com.iu.memorylearnapp.services.StageService;
+import com.iu.memorylearnapp.services.StatisticService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -23,7 +24,6 @@ import java.util.Timer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -36,24 +36,25 @@ class GameControllerTest extends ApplicationTest {
     private ResourceService resourceService;
 
     @Mock
+    private StatisticController statisticController;
+
+    @Mock
+    private StatisticService statisticService;
+
+    @Mock
     private StageService stageService;
 
     private GridPane gridPane;
-
-    private Label movesLabel;
-
-    private Label pairsLabel;
-
-    private Label timeLabel;
-
+    
     private Timer timer;
 
     @BeforeEach
     public void setUp() {
+        final var pairsLabel = mock(Label.class);
+        final var timeLabel = mock(Label.class);
+        final var movesLabel = mock(Label.class);
+
         gridPane = mock(GridPane.class);
-        movesLabel = mock(Label.class);
-        pairsLabel = mock(Label.class);
-        timeLabel = mock(Label.class);
         timer = mock(Timer.class);
 
         ReflectionTestUtils.setField(controller, "gridPane", gridPane);
@@ -73,10 +74,6 @@ class GameControllerTest extends ApplicationTest {
 
         controller.initialize();
 
-        verify(movesLabel).setText(anyString());
-        verify(pairsLabel).setText(anyString());
-        verify(timeLabel).setText(anyString());
-
         verify(gridPane, times(2)).add(any(), anyInt(), anyInt());
         verify(loader, times(2)).load();
     }
@@ -94,8 +91,6 @@ class GameControllerTest extends ApplicationTest {
         final var cardController = mock(CardController.class);
 
         controller.checkCard(cardController);
-
-        verify(movesLabel).setText(anyString());
 
         final var selectedField = ReflectionTestUtils.getField(controller, "selected");
         assertNotNull(selectedField);
@@ -117,7 +112,6 @@ class GameControllerTest extends ApplicationTest {
 
         controller.checkCard(cardController);
 
-        verify(pairsLabel).setText(anyString());
         verify(cardController).unmark();
         verify(selected).unmark();
 
@@ -155,6 +149,14 @@ class GameControllerTest extends ApplicationTest {
         controller.setGoal(goal);
         final var goalField = ReflectionTestUtils.getField(controller, "goal");
         assertSame(goal, goalField);
+    }
+
+    @Test
+    public void testStopGame() {
+        ReflectionTestUtils.invokeMethod(controller, "stopGame");
+        verify(statisticController).setCardSet(any());
+        verify(statisticService).updateStatistic(any(), anyInt(), anyInt());
+        verify(stageService).showPopover(any());
     }
 
     private CardSet mockCardSet() {

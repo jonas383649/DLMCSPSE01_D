@@ -2,6 +2,7 @@ package com.iu.memorylearnapp.services;
 
 import com.iu.memorylearnapp.common.View;
 import com.iu.memorylearnapp.events.StageReadyEvent;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -38,12 +39,13 @@ public class StageService implements ApplicationListener<StageReadyEvent> {
         try {
             parent = loader.load();
             scene = new Scene(parent);
-            parent.requestFocus();
             stage.setScene(scene);
             stage.show();
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
+
+        Platform.runLater(() -> parent.requestFocus());
     }
 
     public void showPopover(final View view) {

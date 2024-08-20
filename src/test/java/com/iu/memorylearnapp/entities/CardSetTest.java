@@ -49,6 +49,13 @@ public class CardSetTest {
     }
 
     @Test
+    public void testStatistic() {
+        final var statistic = new Statistic();
+        entity.setStatistic(statistic);
+        assertSame(statistic, entity.getStatistic());
+    }
+
+    @Test
     public void testName() {
         final var name = "name";
         entity.setName(name);
@@ -57,7 +64,8 @@ public class CardSetTest {
 
     @Test
     public void testToString() {
-        final var expected = "CardSet[id=1, name=name, cardPairs=[]]";
+        final var statistic = entity.getStatistic().toString();
+        final var expected = "CardSet[id=1, name=name, cardPairs=[], statistic=" + statistic + "]";
         entity.setId(1L);
         entity.setName("name");
         assertEquals(expected, entity.toString());

@@ -71,7 +71,6 @@ class StageServiceTest extends ApplicationTest {
 
         service.show(View.MENU);
 
-        verify(parent).requestFocus();
         verify(stage).setScene(any());
         verify(stage).show();
     }

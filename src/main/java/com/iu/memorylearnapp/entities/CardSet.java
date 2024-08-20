@@ -18,6 +18,10 @@ public class CardSet {
     @JsonManagedReference
     private List<CardPair> cardPairs;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "statistic_id")
+    private Statistic statistic;
+
     private String name;
 
     public CardSet() {
@@ -29,6 +33,7 @@ public class CardSet {
     }
 
     public CardSet(final String name, final List<CardPair> cardPairs) {
+        statistic = new Statistic(this);
         this.cardPairs = cardPairs;
         this.name = name;
     }
@@ -49,6 +54,14 @@ public class CardSet {
         this.cardPairs = cardPairs;
     }
 
+    public Statistic getStatistic() {
+        return statistic;
+    }
+
+    public void setStatistic(final Statistic statistic) {
+        this.statistic = statistic;
+    }
+
     public String getName() {
         return name;
     }
@@ -63,6 +76,7 @@ public class CardSet {
             .add("id=" + id)
             .add("name=" + name)
             .add("cardPairs=" + cardPairs)
+            .add("statistic=" + statistic)
             .toString();
     }
 }
