@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.iu.memorylearnapp.controller.CardController">
-    <Button fx:id="button" onAction="#reveal" minHeight="100.0" minWidth="100.0"/>
-</AnchorPane>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iu.memorylearnapp.controller.CardController">
+    <Button fx:id="button" minHeight="100.0" minWidth="100.0" onAction="#reveal">
+        <graphic>
+            <VBox alignment="CENTER">
+                <ImageView
+                    fx:id="imageView"
+                    fitHeight="80.0"
+                    fitWidth="80.0"
+                    preserveRatio="true"
+                    visible="false"
+                    managed="false">
+                </ImageView>
+
+                <Text fx:id="content" visible="false"/>
+            </VBox>
+        </graphic>
+    </Button>
+</StackPane>

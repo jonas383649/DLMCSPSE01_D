@@ -56,8 +56,9 @@ class CardPairTest {
 
     @Test
     public void testToString() {
-        final var card = "Card[id=null, content=null]";
-        final var expected = "CardPair[id=1, firstCard=" + card + ", secondCard=" + card + "]";
+        final var firstCard = entity.getFirstCard().toString();
+        final var secondCard = entity.getSecondCard().toString();
+        final var expected = "CardPair[id=1, firstCard=" + firstCard + ", secondCard=" + secondCard + "]";
         entity.setId(1L);
         assertEquals(expected, entity.toString());
     }

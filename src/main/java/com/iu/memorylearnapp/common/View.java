@@ -1,23 +1,26 @@
 package com.iu.memorylearnapp.common;
 
 public enum View {
-    CARD("/com/iu/memorylearnapp/views/card-view.fxml"),
-    DIFFICULTY("/com/iu/memorylearnapp/views/difficulty-view.fxml"),
-    EDITOR("/com/iu/memorylearnapp/views/editor-view.fxml"),
-    EDITOR_ITEM("/com/iu/memorylearnapp/views/editor-item-view.fxml"),
-    GAME("/com/iu/memorylearnapp/views/game-view.fxml"),
-    MENU("/com/iu/memorylearnapp/views/menu-view.fxml"),
-    MENU_ITEM("/com/iu/memorylearnapp/views/menu-item-view.fxml"),
-    STATISTIC("/com/iu/memorylearnapp/views/statistic-view.fxml");
+    CARD("card-view.fxml"),
+    DETAIL("detail-view.fxml"),
+    DIFFICULTY("difficulty-view.fxml"),
+    EDITOR("editor-view.fxml"),
+    EDITOR_ITEM("editor-item-view.fxml"),
+    GAME("game-view.fxml"),
+    MENU("menu-view.fxml"),
+    MENU_ITEM("menu-item-view.fxml"),
+    STATISTIC("statistic-view.fxml");
 
-    private final String path;
+    private static final String PATH = "/com/iu/memorylearnapp/views/";
 
-    View(final String path) {
-        this.path = path;
+    private final String value;
+
+    View(final String value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        return path;
+        return PATH + value;
     }
 }

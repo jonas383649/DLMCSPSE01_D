@@ -42,4 +42,10 @@ class ResourceServiceTest extends ApplicationTest {
         final var inputStream = service.createInputStream(Data.INITIAL);
         assertNotNull(inputStream);
     }
+
+    @Test
+    public void testCreateUrl() {
+        final var result = service.createUrl(Data.INITIAL.toString());
+        assertNotNull(result);
+    }
 }

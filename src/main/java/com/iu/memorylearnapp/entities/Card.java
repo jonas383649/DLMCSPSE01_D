@@ -19,6 +19,8 @@ public class Card {
 
     private String content;
 
+    private String imagePath;
+
     public Card() {
         this(null);
     }
@@ -51,11 +53,20 @@ public class Card {
         this.content = content;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(final String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Card.class.getSimpleName() + "[", "]")
             .add("id=" + id)
             .add("content=" + content)
+            .add("imagePath=" + imagePath)
             .toString();
     }
 }

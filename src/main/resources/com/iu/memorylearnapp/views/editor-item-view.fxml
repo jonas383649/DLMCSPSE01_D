@@ -5,14 +5,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iu.memorylearnapp.controller.EditorItemController">
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iu.memorylearnapp.controller.EditorItemController">
     <VBox HBox.hgrow="ALWAYS">
-        <TextField fx:id="firstTextField" promptText="Inhalt" />
+        <TextField fx:id="firstTextField" promptText="Inhalt"/>
+        <Button fx:id="firstImageButton" text="Bild auswählen"/>
     </VBox>
     <VBox HBox.hgrow="ALWAYS">
-        <TextField fx:id="secondTextField" promptText="Inhalt" />
+        <TextField fx:id="secondTextField" promptText="Inhalt"/>
+        <Button fx:id="secondImageButton" text="Bild auswählen"/>
     </VBox>
-   <VBox alignment="CENTER" prefWidth="35.0">
-          <Button onAction="#deleteCardPair" text="✖" />
-   </VBox>
+    <VBox alignment="CENTER" prefWidth="35.0">
+        <Button onAction="#deleteCardPair" text="✖"/>
+    </VBox>
 </HBox>

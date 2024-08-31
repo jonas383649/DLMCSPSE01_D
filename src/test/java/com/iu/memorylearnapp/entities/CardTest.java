@@ -48,10 +48,18 @@ class CardTest {
     }
 
     @Test
+    public void testImagePath() {
+        final var imagePath = "imagePath";
+        entity.setImagePath(imagePath);
+        assertSame(imagePath, entity.getImagePath());
+    }
+
+    @Test
     public void testToString() {
-        final var expected = "Card[id=1, content=content]";
+        final var expected = "Card[id=1, content=content, imagePath=imagePath]";
         entity.setId(1L);
         entity.setContent("content");
+        entity.setImagePath("imagePath");
         assertEquals(expected, entity.toString());
     }
 }

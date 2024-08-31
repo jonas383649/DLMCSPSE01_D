@@ -1,16 +1,18 @@
 package com.iu.memorylearnapp.common;
 
 public enum Data {
-    INITIAL("com/iu/memorylearnapp/data/initial_data.json");
+    INITIAL("initial_data.json");
 
-    private final String path;
+    private static final String PATH = "/com/iu/memorylearnapp/data/";
 
-    Data(final String path) {
-        this.path = path;
+    private final String value;
+
+    Data(final String value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        return path;
+        return PATH + value;
     }
 }

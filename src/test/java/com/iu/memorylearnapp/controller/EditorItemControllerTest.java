@@ -4,6 +4,7 @@ import com.iu.memorylearnapp.entities.Card;
 import com.iu.memorylearnapp.entities.CardPair;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,16 +31,24 @@ class EditorItemControllerTest extends ApplicationTest {
 
     private TextField secondTextField;
 
+    private Button firstImageButton;
+
+    private Button secondImageButton;
+
     private CardPair cardPair;
 
     @BeforeEach
     public void setUp() {
         firstTextField = mock(TextField.class);
         secondTextField = mock(TextField.class);
+        firstImageButton = mock(Button.class);
+        secondImageButton = mock(Button.class);
         cardPair = mock(CardPair.class);
 
         ReflectionTestUtils.setField(controller, "firstTextField", firstTextField);
         ReflectionTestUtils.setField(controller, "secondTextField", secondTextField);
+        ReflectionTestUtils.setField(controller, "firstImageButton", firstImageButton);
+        ReflectionTestUtils.setField(controller, "secondImageButton", secondImageButton);
         ReflectionTestUtils.setField(controller, "cardPair", cardPair);
     }
 
@@ -55,6 +64,9 @@ class EditorItemControllerTest extends ApplicationTest {
 
         verify(firstTextProperty).addListener(any(ChangeListener.class));
         verify(secondTextProperty).addListener(any(ChangeListener.class));
+
+        verify(firstImageButton).setOnAction(any());
+        verify(secondImageButton).setOnAction(any());
     }
 
     @Test
