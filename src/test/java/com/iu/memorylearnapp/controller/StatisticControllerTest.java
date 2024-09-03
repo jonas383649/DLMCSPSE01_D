@@ -3,7 +3,7 @@ package com.iu.memorylearnapp.controller;
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.entities.Statistic;
 import com.iu.memorylearnapp.services.StageService;
-import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,36 +26,36 @@ class StatisticControllerTest extends ApplicationTest {
     @Mock
     private StageService stageService;
 
-    private Label timeLabel;
+    private Text time;
 
-    private Label movesLabel;
+    private Text moves;
 
-    private Label bestTimeLabel;
+    private Text bestTime;
 
-    private Label bestMovesLabel;
+    private Text bestMoves;
 
-    private Label avgTimeLabel;
+    private Text avgTime;
 
-    private Label avgMovesLabel;
+    private Text avgMoves;
 
     private CardSet cardSet;
 
     @BeforeEach
     public void setUp() {
-        timeLabel = mock(Label.class);
-        movesLabel = mock(Label.class);
-        bestTimeLabel = mock(Label.class);
-        bestMovesLabel = mock(Label.class);
-        avgTimeLabel = mock(Label.class);
-        avgMovesLabel = mock(Label.class);
+        time = mock(Text.class);
+        moves = mock(Text.class);
+        bestTime = mock(Text.class);
+        bestMoves = mock(Text.class);
+        avgTime = mock(Text.class);
+        avgMoves = mock(Text.class);
         cardSet = mock(CardSet.class);
 
-        ReflectionTestUtils.setField(controller, "timeLabel", timeLabel);
-        ReflectionTestUtils.setField(controller, "movesLabel", movesLabel);
-        ReflectionTestUtils.setField(controller, "bestTimeLabel", bestTimeLabel);
-        ReflectionTestUtils.setField(controller, "bestMovesLabel", bestMovesLabel);
-        ReflectionTestUtils.setField(controller, "avgTimeLabel", avgTimeLabel);
-        ReflectionTestUtils.setField(controller, "avgMovesLabel", avgMovesLabel);
+        ReflectionTestUtils.setField(controller, "time", time);
+        ReflectionTestUtils.setField(controller, "moves", moves);
+        ReflectionTestUtils.setField(controller, "bestTime", bestTime);
+        ReflectionTestUtils.setField(controller, "bestMoves", bestMoves);
+        ReflectionTestUtils.setField(controller, "avgTime", avgTime);
+        ReflectionTestUtils.setField(controller, "avgMoves", avgMoves);
         ReflectionTestUtils.setField(controller, "cardSet", cardSet);
     }
 
@@ -65,12 +65,12 @@ class StatisticControllerTest extends ApplicationTest {
 
         controller.initialize();
 
-        verify(timeLabel).setText(anyString());
-        verify(movesLabel).setText(anyString());
-        verify(bestTimeLabel).setText(anyString());
-        verify(bestMovesLabel).setText(anyString());
-        verify(avgTimeLabel).setText(anyString());
-        verify(avgMovesLabel).setText(anyString());
+        verify(time).setText(anyString());
+        verify(moves).setText(anyString());
+        verify(bestTime).setText(anyString());
+        verify(bestMoves).setText(anyString());
+        verify(avgTime).setText(anyString());
+        verify(avgMoves).setText(anyString());
     }
 
     @Test

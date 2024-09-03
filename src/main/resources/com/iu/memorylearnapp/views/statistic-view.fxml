@@ -2,33 +2,38 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
-      fx:controller="com.iu.memorylearnapp.controller.StatisticController" spacing="10" alignment="CENTER">
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.iu.memorylearnapp.controller.StatisticController">
+    <VBox styleClass="container" alignment="CENTER" spacing="10">
+        <Label text="Spielstatistik" styleClass="title"/>
+        <Region VBox.vgrow="ALWAYS"/>
 
-    <Label text="Spielstatistiken" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <GridPane hgap="120" vgap="10" alignment="CENTER">
+            <Text text="Zeit:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Text text="Anzahl der Züge:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Text text="Beste Zeit:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <Text text="Beste Anzahl der Züge:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <Text text="Durchschnittliche Zeit:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <Text text="Durchschnittliche Anzahl der Züge:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
 
-    <GridPane hgap="10" vgap="10" alignment="CENTER">
-        <Label text="Zeit:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <Label text="Anzahl der Züge:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <Label text="Beste Zeit:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <Label text="Beste Anzahl der Züge:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <Label text="Durchschnittliche Zeit:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-        <Label text="Durchschnittliche Anzahl der Züge:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <Text fx:id="time" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Text fx:id="moves" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Text fx:id="bestTime" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Text fx:id="bestMoves" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Text fx:id="avgTime" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Text fx:id="avgMoves" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+        </GridPane>
 
-        <Label fx:id="timeLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-        <Label fx:id="movesLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-        <Label fx:id="bestTimeLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-        <Label fx:id="bestMovesLabel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-        <Label fx:id="avgTimeLabel" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-        <Label fx:id="avgMovesLabel" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-    </GridPane>
-
-    <HBox spacing="10" alignment="CENTER">
-        <Button text="Erneut spielen" onAction="#replay"/>
-        <Button text="Weiter zum Menü" onAction="#showMenu"/>
-    </HBox>
-</VBox>
+        <Region VBox.vgrow="ALWAYS"/>
+        <HBox alignment="CENTER" spacing="10">
+            <Button text="Erneut spielen" onAction="#replay"/>
+            <Button text="Weiter zum Menü" onAction="#showMenu"/>
+        </HBox>
+    </VBox>
+</StackPane>

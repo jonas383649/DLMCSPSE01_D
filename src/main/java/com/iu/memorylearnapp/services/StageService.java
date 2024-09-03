@@ -1,5 +1,6 @@
 package com.iu.memorylearnapp.services;
 
+import com.iu.memorylearnapp.common.Style;
 import com.iu.memorylearnapp.common.View;
 import com.iu.memorylearnapp.events.StageReadyEvent;
 import javafx.application.Platform;
@@ -35,10 +36,12 @@ public class StageService implements ApplicationListener<StageReadyEvent> {
 
     public void show(final View view) {
         final var loader = resourceService.createLoader(view);
+        final var styles = resourceService.createUrl(Style.GLOBAL.toString()).toExternalForm();
 
         try {
             parent = loader.load();
             scene = new Scene(parent);
+            scene.getStylesheets().add(styles);
             stage.setScene(scene);
             stage.show();
         } catch (final Exception e) {

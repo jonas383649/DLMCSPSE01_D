@@ -77,7 +77,7 @@ public class EditorItemController {
 
     private void validateTextField(final TextField textField) {
         if (textField.getText() == null || textField.getText().isEmpty()) {
-            textField.setTooltip(new Tooltip("Bitte füge den Inhalt hinzu."));
+            textField.setTooltip(new Tooltip("Inhalt fehlt"));
             textField.setStyle("-fx-border-color: red; -fx-border-width: 2;");
         } else {
             textField.setTooltip(null);

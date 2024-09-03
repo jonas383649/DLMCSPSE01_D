@@ -3,26 +3,28 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Pane?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iu.memorylearnapp.controller.EditorController">
-    <HBox>
-        <VBox HBox.hgrow="ALWAYS">
-            <Label text="Karte 1"/>
-        </VBox>
-        <VBox HBox.hgrow="ALWAYS">
-            <Label text="Karte 2"/>
-        </VBox>
-        <VBox prefWidth="35.0"/>
-    </HBox>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.iu.memorylearnapp.controller.EditorController">
+    <VBox styleClass="container" spacing="10">
+        <HBox>
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="Karte 1"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="Karte 2"/>
+            </VBox>
+            <VBox prefWidth="35.0"/>
+        </HBox>
 
-    <ListView fx:id="cardPairsListView"/>
+        <ListView fx:id="cardPairsListView" VBox.vgrow="ALWAYS"/>
 
-    <HBox>
-        <Button onAction="#cancel" text="Abbrechen"/>
-        <Button onAction="#addCardPair" text="Kartenpaar hinzufügen"/>
-        <Button onAction="#saveChanges" text="Speichern"/>
-    </HBox>
-</VBox>
+        <HBox spacing="10">
+            <Button onAction="#cancel" text="Abbrechen"/>
+            <Button onAction="#addCardPair" text="Kartenpaar hinzufügen"/>
+            <Button onAction="#saveChanges" text="Speichern"/>
+        </HBox>
+    </VBox>
+</StackPane>

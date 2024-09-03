@@ -6,10 +6,14 @@ import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.services.ResourceService;
 import com.iu.memorylearnapp.services.StageService;
 import com.iu.memorylearnapp.services.StatisticService;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.RowConstraints;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,7 +49,7 @@ class GameControllerTest extends ApplicationTest {
     private StageService stageService;
 
     private GridPane gridPane;
-    
+
     private Timer timer;
 
     @BeforeEach
@@ -53,6 +57,7 @@ class GameControllerTest extends ApplicationTest {
         final var pairsLabel = mock(Label.class);
         final var timeLabel = mock(Label.class);
         final var movesLabel = mock(Label.class);
+        final var setLabel = mock(Label.class);
 
         gridPane = mock(GridPane.class);
         timer = mock(Timer.class);
@@ -61,6 +66,7 @@ class GameControllerTest extends ApplicationTest {
         ReflectionTestUtils.setField(controller, "movesLabel", movesLabel);
         ReflectionTestUtils.setField(controller, "pairsLabel", pairsLabel);
         ReflectionTestUtils.setField(controller, "timeLabel", timeLabel);
+        ReflectionTestUtils.setField(controller, "setLabel", setLabel);
         ReflectionTestUtils.setField(controller, "timer", timer);
     }
 
@@ -71,6 +77,8 @@ class GameControllerTest extends ApplicationTest {
 
         ReflectionTestUtils.setField(controller, "cardSet", cardSet);
         ReflectionTestUtils.setField(controller, "goal", 1);
+
+        stubGridPane();
 
         controller.initialize();
 
@@ -159,6 +167,28 @@ class GameControllerTest extends ApplicationTest {
         verify(stageService).showPopover(any());
     }
 
+    @Test
+    public void testConfigGrid() {
+        stubGridPane();
+
+        ReflectionTestUtils.invokeMethod(controller, "configGrid", 1);
+
+        verify(gridPane).getColumnConstraints();
+        verify(gridPane).getRowConstraints();
+        verify(gridPane).widthProperty();
+        verify(gridPane).heightProperty();
+    }
+
+    @Test
+    public void testResizeCells() {
+        stubGridPaneConstraints();
+
+        ReflectionTestUtils.invokeMethod(controller, "resizeCells");
+
+        verify(gridPane).getColumnConstraints();
+        verify(gridPane).getRowConstraints();
+    }
+
     private CardSet mockCardSet() {
         final var cardSet = mock(CardSet.class);
         final var cardPair = mock(CardPair.class);
@@ -175,7 +205,7 @@ class GameControllerTest extends ApplicationTest {
     private FXMLLoader mockLoader() throws Exception {
         final var loader = mock(FXMLLoader.class);
         final var cardController = mock(CardController.class);
-        final var root = mock(Node.class);
+        final var root = mock(Region.class);
 
         when(resourceService.createLoader(any())).thenReturn(loader);
         when(loader.getController()).thenReturn(cardController);
@@ -193,5 +223,28 @@ class GameControllerTest extends ApplicationTest {
         when(card.getCardPair()).thenReturn(cardPair);
 
         return cardController;
+    }
+
+    private void stubGridPane() {
+        when(gridPane.getColumnConstraints()).thenReturn(mock(ObservableList.class));
+        when(gridPane.getRowConstraints()).thenReturn(mock(ObservableList.class));
+        when(gridPane.widthProperty()).thenReturn(new SimpleDoubleProperty());
+        when(gridPane.heightProperty()).thenReturn(new SimpleDoubleProperty());
+    }
+
+    private void stubGridPaneConstraints() {
+        final var columnConstraints = mock(ColumnConstraints.class);
+        final var rowConstraints = mock(RowConstraints.class);
+
+        final var columnConstraintsList = mock(ObservableList.class);
+        final var rowConstraintsList = mock(ObservableList.class);
+
+        when(columnConstraintsList.get(anyInt())).thenReturn(columnConstraints);
+        when(rowConstraintsList.get(anyInt())).thenReturn(rowConstraints);
+
+        when(gridPane.getColumnConstraints()).thenReturn(columnConstraintsList);
+        when(gridPane.getRowConstraints()).thenReturn(rowConstraintsList);
+        when(gridPane.getColumnCount()).thenReturn(1);
+        when(gridPane.getRowCount()).thenReturn(1);
     }
 }

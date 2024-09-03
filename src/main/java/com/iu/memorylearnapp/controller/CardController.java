@@ -4,14 +4,9 @@ import com.iu.memorylearnapp.entities.Card;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,6 +18,10 @@ import java.io.File;
 @Scope("prototype")
 public class CardController {
 
+    private final String revealed = "revealed";
+
+    private final String highlighted = "highlighted";
+
     @Autowired
     private GameController gameController;
 
@@ -33,7 +32,7 @@ public class CardController {
     private ImageView imageView;
 
     @FXML
-    private Text content;
+    private Label content;
 
     private Card card;
 
@@ -41,8 +40,8 @@ public class CardController {
 
     @FXML
     public void initialize() {
-        coverDelay = new PauseTransition(Duration.seconds(1.5));
-        coverDelay.setOnFinished(_ -> performCover());
+        configCoverDelay();
+        updateStyles();
     }
 
     @FXML
@@ -56,7 +55,7 @@ public class CardController {
     }
 
     public void unmark() {
-        button.setBorder(null);
+        button.getStyleClass().remove(highlighted);
     }
 
     public Card getCard() {
@@ -69,11 +68,29 @@ public class CardController {
         updateImage();
     }
 
+    private void configCoverDelay() {
+        coverDelay = new PauseTransition(Duration.seconds(1.5));
+        coverDelay.setOnFinished(_ -> performCover());
+    }
+
+    private void updateStyles() {
+        button.setMinSize(0, 0);
+
+        imageView.fitHeightProperty().bind(button.heightProperty().multiply(0.9).subtract(30));
+        imageView.setPreserveRatio(true);
+        imageView.setVisible(false);
+        imageView.setManaged(false);
+
+        content.maxWidthProperty().bind(button.widthProperty().subtract(5));
+        content.setVisible(false);
+    }
+
     private void performReveal() {
         coverDelay.stop();
 
         button.setDisable(true);
-        button.setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(2))));
+        button.getStyleClass().add(revealed);
+        button.getStyleClass().add(highlighted);
 
         if (hasImage()) {
             imageView.setVisible(true);
@@ -86,8 +103,9 @@ public class CardController {
     }
 
     private void performCover() {
-        button.setBorder(null);
         button.setDisable(false);
+        button.getStyleClass().remove(revealed);
+        button.getStyleClass().remove(highlighted);
 
         if (hasImage()) {
             imageView.setVisible(false);

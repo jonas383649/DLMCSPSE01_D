@@ -4,7 +4,7 @@ import com.iu.memorylearnapp.common.View;
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.services.StageService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -15,22 +15,22 @@ public class StatisticController {
     private StageService stageService;
 
     @FXML
-    private Label timeLabel;
+    private Text time;
 
     @FXML
-    private Label movesLabel;
+    private Text moves;
 
     @FXML
-    private Label bestTimeLabel;
+    private Text bestTime;
 
     @FXML
-    private Label bestMovesLabel;
+    private Text bestMoves;
 
     @FXML
-    private Label avgTimeLabel;
+    private Text avgTime;
 
     @FXML
-    private Label avgMovesLabel;
+    private Text avgMoves;
 
     private CardSet cardSet;
 
@@ -56,12 +56,12 @@ public class StatisticController {
     private void updateStatisticsView() {
         final var statistic = cardSet.getStatistic();
 
-        timeLabel.setText(formatTime(statistic.getLastTime()));
-        movesLabel.setText(String.valueOf(statistic.getLastMoves()));
-        bestTimeLabel.setText(formatTime(statistic.getBestTime()));
-        bestMovesLabel.setText(String.valueOf(statistic.getBestMoves()));
-        avgTimeLabel.setText(formatTime(statistic.getAvgTime()));
-        avgMovesLabel.setText(String.valueOf(statistic.getAvgMoves()));
+        time.setText(formatTime(statistic.getLastTime()));
+        moves.setText(String.valueOf(statistic.getLastMoves()));
+        bestTime.setText(formatTime(statistic.getBestTime()));
+        bestMoves.setText(String.valueOf(statistic.getBestMoves()));
+        avgTime.setText(formatTime(statistic.getAvgTime()));
+        avgMoves.setText(String.valueOf(statistic.getAvgMoves()));
     }
 
     private String formatTime(final double time) {

@@ -17,6 +17,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import java.net.URL;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -55,6 +57,7 @@ class StageServiceTest extends ApplicationTest {
     public void testOnApplicationEvent() {
         final var event = new StageReadyEvent(stage);
 
+        when(resourceService.createUrl(anyString())).thenReturn(mock(URL.class));
         when(parent.getStyleClass()).thenReturn(mock(ObservableList.class));
 
         service.onApplicationEvent(event);
@@ -67,6 +70,7 @@ class StageServiceTest extends ApplicationTest {
 
     @Test
     public void testShow() {
+        when(resourceService.createUrl(anyString())).thenReturn(mock(URL.class));
         when(parent.getStyleClass()).thenReturn(mock(ObservableList.class));
 
         service.show(View.MENU);
@@ -77,8 +81,8 @@ class StageServiceTest extends ApplicationTest {
 
     @Test
     public void testShowPopover() {
-        when(scene.widthProperty()).thenReturn(new SimpleDoubleProperty(1));
-        when(scene.heightProperty()).thenReturn(new SimpleDoubleProperty(1));
+        when(scene.widthProperty()).thenReturn(new SimpleDoubleProperty());
+        when(scene.heightProperty()).thenReturn(new SimpleDoubleProperty());
 
         service.showPopover(View.MENU);
 

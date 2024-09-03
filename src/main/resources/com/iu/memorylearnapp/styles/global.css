@@ -1,0 +1,63 @@
+.root {
+    -fx-background-color: white;
+    -fx-text-fill: rgb(16, 16, 25);
+    -fx-font-family: Arial, Helvetica, sans-serif;
+    -fx-text-overrun: ellipsis;
+    -fx-font-size: 16px;
+}
+
+.button {
+    -fx-padding: 8px;
+    -fx-background-color: white;
+    -fx-background-radius: 14px;
+    -fx-background-insets: 0;
+    -fx-border-color: rgb(218, 218, 231);
+    -fx-border-style: solid;
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
+}
+
+.button:hover {
+    -fx-background-color: rgb(243, 243, 247);
+}
+
+.text-field {
+    -fx-padding: 8px;
+    -fx-background-color: white;
+    -fx-background-radius: 14px;
+    -fx-background-insets: 0;
+    -fx-border-color: rgb(218, 218, 231);
+    -fx-border-style: solid;
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
+}
+
+.label {
+    -fx-alignment: center;
+}
+
+.title {
+    -fx-font-size: 22px;
+}
+
+.card {
+    -fx-background-color: rgb(180, 180, 180);
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+    -fx-max-width: Infinity;
+    -fx-max-height: Infinity;
+    -fx-border-width: 0px;
+}
+
+.highlighted {
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+}
+
+.revealed {
+    -fx-background-color: rgb(247, 247, 247);
+}
+
+.container {
+    -fx-padding: 10px
+}

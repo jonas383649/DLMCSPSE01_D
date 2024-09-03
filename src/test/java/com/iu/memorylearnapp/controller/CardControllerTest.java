@@ -2,9 +2,11 @@ package com.iu.memorylearnapp.controller;
 
 import com.iu.memorylearnapp.entities.Card;
 import javafx.animation.PauseTransition;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +33,7 @@ class CardControllerTest extends ApplicationTest {
 
     private ImageView imageView;
 
-    private Text content;
+    private Label content;
 
     private Card card;
 
@@ -41,7 +43,7 @@ class CardControllerTest extends ApplicationTest {
     public void setUp() {
         button = mock(Button.class);
         imageView = mock(ImageView.class);
-        content = mock(Text.class);
+        content = mock(Label.class);
         card = mock(Card.class);
         coverDelay = mock(PauseTransition.class);
 
@@ -54,23 +56,40 @@ class CardControllerTest extends ApplicationTest {
 
     @Test
     public void testInitialize() {
+        when(button.heightProperty()).thenReturn(new SimpleDoubleProperty());
+        when(button.widthProperty()).thenReturn(new SimpleDoubleProperty());
+        
+        when(imageView.fitHeightProperty()).thenReturn(new SimpleDoubleProperty());
+        when(content.maxWidthProperty()).thenReturn(new SimpleDoubleProperty());
+
         controller.initialize();
 
         final var coverDelayField = ReflectionTestUtils.getField(controller, "coverDelay");
 
         assertNotSame(coverDelayField, this.coverDelay);
         assertNotNull(coverDelayField);
+
+        verify(button).setMinSize(anyDouble(), anyDouble());
+
+        verify(imageView).fitHeightProperty();
+        verify(imageView).setPreserveRatio(anyBoolean());
+        verify(imageView).setVisible(anyBoolean());
+        verify(imageView).setManaged(anyBoolean());
+
+        verify(content).maxWidthProperty();
+        verify(content).setVisible(anyBoolean());
     }
 
     @Test
     public void testReveal() {
         when(card.getImagePath()).thenReturn("path");
+        when(button.getStyleClass()).thenReturn(mock(ObservableList.class));
 
         controller.reveal();
 
         verify(coverDelay).stop();
-        verify(button).setDisable(true);
-        verify(button).setBorder(any());
+        verify(button, times(1)).setDisable(true);
+        verify(button, times(2)).getStyleClass();
         verify(imageView).setVisible(true);
         verify(imageView).setManaged(true);
         verify(content).setVisible(true);
@@ -85,8 +104,9 @@ class CardControllerTest extends ApplicationTest {
 
     @Test
     public void testUnmark() {
+        when(button.getStyleClass()).thenReturn(mock(ObservableList.class));
         controller.unmark();
-        verify(button).setBorder(null);
+        verify(button).getStyleClass();
     }
 
     @Test
@@ -99,11 +119,12 @@ class CardControllerTest extends ApplicationTest {
     @Test
     public void testPerformCover() {
         when(card.getImagePath()).thenReturn("path");
+        when(button.getStyleClass()).thenReturn(mock(ObservableList.class));
 
         ReflectionTestUtils.invokeMethod(controller, "performCover");
 
-        verify(button).setBorder(null);
-        verify(button).setDisable(false);
+        verify(button, times(1)).setDisable(false);
+        verify(button, times(2)).getStyleClass();
         verify(imageView).setVisible(false);
         verify(imageView).setManaged(false);
         verify(content).setVisible(false);

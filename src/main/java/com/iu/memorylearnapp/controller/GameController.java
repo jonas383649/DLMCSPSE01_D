@@ -8,9 +8,11 @@ import com.iu.memorylearnapp.services.StageService;
 import com.iu.memorylearnapp.services.StatisticService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.RowConstraints;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -49,6 +51,9 @@ public class GameController {
     @FXML
     private Label timeLabel;
 
+    @FXML
+    private Label setLabel;
+
     private CardController selected;
 
     private CardSet cardSet;
@@ -73,6 +78,7 @@ public class GameController {
         updateMovesLabel();
         updatePairsLabel();
         updateTimeLabel();
+        updateSetLabel();
 
         createCardsView();
     }
@@ -157,27 +163,60 @@ public class GameController {
         Platform.runLater(() -> timeLabel.setText("Zeit: " + time + "s"));
     }
 
-    private void createCardsView() {
-        final var cards = getCards(cardSet, goal);
-        final int columns = (int) Math.ceil(Math.sqrt(goal * 2));
+    private void updateSetLabel() {
+        Platform.runLater(() -> setLabel.setText(cardSet.getName()));
+    }
 
+    private void createCardsView() {
+        final var size = (int) Math.ceil(Math.sqrt(goal * 2));
+        final var cards = getCards(cardSet, goal);
+
+        addCardViews(cards, size);
+        configGrid(size);
+        resizeCells();
+    }
+
+    private void addCardViews(final List<Card> cards, final int size) {
         for (int i = 0; i < cards.size(); i++) {
             final var card = cards.get(i);
             final var cardView = createCardView(card);
-            gridPane.add(cardView, i % columns, i / columns);
+            gridPane.add(cardView, i % size, i / size);
         }
     }
 
-    private Node createCardView(final Card card) {
+    private Region createCardView(final Card card) {
         final var loader = resourceService.createLoader(View.CARD);
 
         try {
-            final Node root = loader.load();
+            final Region root = loader.load();
             final CardController controller = loader.getController();
             controller.setCard(card);
             return root;
         } catch (final Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void configGrid(final int size) {
+        for (var i = 0; i < size; i++) {
+            gridPane.getColumnConstraints().add(new ColumnConstraints(50, 100, Double.MAX_VALUE));
+            gridPane.getRowConstraints().add(new RowConstraints(50, 100, Double.MAX_VALUE));
+        }
+
+        gridPane.widthProperty().addListener(_ -> resizeCells());
+        gridPane.heightProperty().addListener(_ -> resizeCells());
+    }
+
+    private void resizeCells() {
+        final var cellWidth = gridPane.getWidth() / gridPane.getColumnCount();
+        final var cellHeight = gridPane.getHeight() / gridPane.getRowCount();
+        final var cellSize = Math.min(cellWidth, cellHeight);
+
+        for (var row = 0; row < gridPane.getRowCount(); row++) {
+            for (var col = 0; col < gridPane.getColumnCount(); col++) {
+                gridPane.getColumnConstraints().get(col).setPrefWidth(cellSize);
+                gridPane.getRowConstraints().get(row).setPrefHeight(cellSize);
+            }
         }
     }
 
