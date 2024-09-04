@@ -1,6 +1,6 @@
 [
   {
-    "name": "Set 1",
+    "name": "Alphabet",
     "cardPairs": [
       {
         "firstCard": {
@@ -17,12 +17,7 @@
         "secondCard": {
           "content": "B"
         }
-      }
-    ]
-  },
-  {
-    "name": "Set 2",
-    "cardPairs": [
+      },
       {
         "firstCard": {
           "content": "C"
@@ -38,12 +33,7 @@
         "secondCard": {
           "content": "D"
         }
-      }
-    ]
-  },
-  {
-    "name": "Set 3",
-    "cardPairs": [
+      },
       {
         "firstCard": {
           "content": "E"
@@ -58,6 +48,311 @@
         },
         "secondCard": {
           "content": "F"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "G"
+        },
+        "secondCard": {
+          "content": "G"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "H"
+        },
+        "secondCard": {
+          "content": "H"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "I"
+        },
+        "secondCard": {
+          "content": "I"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "J"
+        },
+        "secondCard": {
+          "content": "J"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "K"
+        },
+        "secondCard": {
+          "content": "K"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "L"
+        },
+        "secondCard": {
+          "content": "L"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "M"
+        },
+        "secondCard": {
+          "content": "M"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "N"
+        },
+        "secondCard": {
+          "content": "N"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "O"
+        },
+        "secondCard": {
+          "content": "O"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "P"
+        },
+        "secondCard": {
+          "content": "P"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Q"
+        },
+        "secondCard": {
+          "content": "Q"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "R"
+        },
+        "secondCard": {
+          "content": "R"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "S"
+        },
+        "secondCard": {
+          "content": "S"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "T"
+        },
+        "secondCard": {
+          "content": "T"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "U"
+        },
+        "secondCard": {
+          "content": "U"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "V"
+        },
+        "secondCard": {
+          "content": "V"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "W"
+        },
+        "secondCard": {
+          "content": "W"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "X"
+        },
+        "secondCard": {
+          "content": "X"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Y"
+        },
+        "secondCard": {
+          "content": "Y"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Z"
+        },
+        "secondCard": {
+          "content": "Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Chemische Elemente",
+    "cardPairs": [
+      {
+        "firstCard": {
+          "content": "Wasserstoff"
+        },
+        "secondCard": {
+          "content": "H",
+          "imagePath": "images/hydrogen.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Kohlenstoff"
+        },
+        "secondCard": {
+          "content": "C",
+          "imagePath": "images/carbon.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Eisen"
+        },
+        "secondCard": {
+          "content": "Fe",
+          "imagePath": "images/iron.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Kupfer"
+        },
+        "secondCard": {
+          "content": "Cu",
+          "imagePath": "images/copper.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Gold"
+        },
+        "secondCard": {
+          "content": "Au",
+          "imagePath": "images/gold.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Silber"
+        },
+        "secondCard": {
+          "content": "Ag",
+          "imagePath": "images/silver.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Erfinder und Erfindungen",
+    "cardPairs": [
+      {
+        "firstCard": {
+          "content": "Johannes Gutenberg"
+        },
+        "secondCard": {
+          "content": "Buchdruck",
+          "imagePath": "images/printing_press.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Alexander Graham Bell"
+        },
+        "secondCard": {
+          "content": "Telefon",
+          "imagePath": "images/telephone.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Thomas Edison"
+        },
+        "secondCard": {
+          "content": "Glühbirne",
+          "imagePath": "images/lightbulb.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Wright-Brüder"
+        },
+        "secondCard": {
+          "content": "Flugzeug",
+          "imagePath": "images/airplane.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Nikola Tesla"
+        },
+        "secondCard": {
+          "content": "Wechselstrom",
+          "imagePath": "images/alternating_current.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "James Watt"
+        },
+        "secondCard": {
+          "content": "Dampfmaschine",
+          "imagePath": "images/steam_engine.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Guglielmo Marconi"
+        },
+        "secondCard": {
+          "content": "Funkübertragung",
+          "imagePath": "images/radio.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Karl Benz"
+        },
+        "secondCard": {
+          "content": "Automobil",
+          "imagePath": "images/automobile.jpg"
+        }
+      },
+      {
+        "firstCard": {
+          "content": "Steve Jobs"
+        },
+        "secondCard": {
+          "content": "iPhone",
+          "imagePath": "images/iphone.jpg"
         }
       }
     ]
