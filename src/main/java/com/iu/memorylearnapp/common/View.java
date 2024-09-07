@@ -1,5 +1,8 @@
 package com.iu.memorylearnapp.common;
 
+/**
+ * Enum which represents view resources and their corresponding paths.
+ */
 public enum View {
     CARD("card-view.fxml"),
     DETAIL("detail-view.fxml"),

@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class responsible for initializing the application data.
+ *
+ * <p>The {@link InitialDataService} checks if {@link CardSet} entities exist in the
+ * database upon application startup. If none are found, it loads initial data
+ * from a predefined resource and saves it to the database.</p>
+ */
 @Service
 public class InitialDataService {
 
@@ -26,6 +33,14 @@ public class InitialDataService {
         objectMapper = new ObjectMapper();
     }
 
+    /**
+     * Initializes the service after the bean's properties have been set.
+     *
+     * <p>Checks if {@link CardSet} entities are present in the repository.
+     * If not, loads initial card set data from the resource and saves it to the repository.
+     *
+     * @throws Exception if an error occurs while loading or processing the data.
+     */
     @PostConstruct
     public void initialize() throws Exception {
         if (cardSetRepository.count() == 0) {

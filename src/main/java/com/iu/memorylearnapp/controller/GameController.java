@@ -24,6 +24,9 @@ import java.util.stream.Stream;
 
 import static java.util.Collections.shuffle;
 
+/**
+ * Controller that contains the required logic of the game view.
+ */
 @Controller
 public class GameController {
 
@@ -68,6 +71,9 @@ public class GameController {
 
     private int goal;
 
+    /**
+     * Executes the initialization logic of the controller to set up the view elements.
+     */
     @FXML
     public void initialize() {
         selected = null;
@@ -83,12 +89,23 @@ public class GameController {
         createCardsView();
     }
 
+    /**
+     * Stop the current game and show the menu view.
+     */
     @FXML
     public void quitGame() {
         stageService.show(View.MENU);
         stopTimer();
     }
 
+    /**
+     * Checks the selected card based on the current state of this controller.
+     *
+     * <p>If no card is selected, the current card is selected.
+     * Otherwise, it checks if the selected card matches the current card.</p>
+     *
+     * @param controller the {@link CardController} that contains the revealed card entity
+     */
     public void checkCard(final CardController controller) {
         if (selected == null) {
             selectCard(controller);
@@ -97,10 +114,20 @@ public class GameController {
         }
     }
 
+    /**
+     * Set the new associated card set of this controller.
+     *
+     * @param cardSet the new associated {@link CardSet} instance
+     */
     public void setCardSet(CardSet cardSet) {
         this.cardSet = cardSet;
     }
 
+    /**
+     * Set the goal to find pairs of cards.
+     *
+     * @param goal the goal to be set
+     */
     public void setGoal(final int goal) {
         this.goal = goal;
     }

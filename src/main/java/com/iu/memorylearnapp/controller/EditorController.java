@@ -13,6 +13,9 @@ import javafx.scene.control.ListView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+/**
+ * Controller that contains the required logic of the editor view.
+ */
 @Controller
 public class EditorController {
 
@@ -30,11 +33,17 @@ public class EditorController {
 
     private CardSet cardSet;
 
+    /**
+     * Executes the initialization logic of the controller to set up the view elements.
+     */
     @FXML
     public void initialize() {
         updateListView();
     }
 
+    /**
+     * Add a new card pair to the current card set.
+     */
     @FXML
     public void addCardPair() {
         final var cardPairs = cardSet.getCardPairs();
@@ -43,23 +52,39 @@ public class EditorController {
         updateListView();
     }
 
+    /**
+     * Delete a card pair of the current card set.
+     *
+     * @param cardPair the {@link CardPair} instance to be deleted
+     */
     @FXML
     public void deleteCardPair(final CardPair cardPair) {
         cardSet.getCardPairs().remove(cardPair);
         updateListView();
     }
 
+    /**
+     * Save the current changes in the database.
+     */
     @FXML
     public void saveChanges() {
         cardSetRepository.save(cardSet);
         this.stageService.show(View.MENU);
     }
 
+    /**
+     * Discard the current changes and show the menu view.
+     */
     @FXML
     public void cancel() {
         this.stageService.show(View.MENU);
     }
 
+    /**
+     * Set the new associated card set of this controller.
+     *
+     * @param cardSet the new associated {@link CardSet} instance
+     */
     public void setCardSet(final CardSet cardSet) {
         this.cardSet = cardSet;
     }

@@ -8,6 +8,9 @@ import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+/**
+ * Controller that contains the required logic of the statistic view.
+ */
 @Controller
 public class StatisticController {
 
@@ -34,21 +37,35 @@ public class StatisticController {
 
     private CardSet cardSet;
 
+    /**
+     * Executes the initialization logic of the controller to set up the view elements.
+     */
     @FXML
     public void initialize() {
         updateStatisticsView();
     }
 
+    /**
+     * Show the game view to replay the currently selected memory card set.
+     */
     @FXML
     public void replay() {
         stageService.show(View.GAME);
     }
 
+    /**
+     * Show the menu view.
+     */
     @FXML
     public void showMenu() {
         stageService.show(View.MENU);
     }
 
+    /**
+     * Set the new associated card set of this controller.
+     *
+     * @param cardSet the new associated {@link CardSet} instance
+     */
     public void setCardSet(final CardSet cardSet) {
         this.cardSet = cardSet;
     }

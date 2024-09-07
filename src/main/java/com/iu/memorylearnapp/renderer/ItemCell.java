@@ -5,7 +5,14 @@ import com.iu.memorylearnapp.services.ResourceService;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 
-public abstract class ItemCell<T, C> extends ListCell<T> {
+/**
+ * An abstract base class for custom list cells that uses a cell factory to
+ * load an FXML view and its associated controller.
+ *
+ * @param <I> the type of the item managed by this cell
+ * @param <C> the type of the controller associated with the FXML view
+ */
+public abstract class ItemCell<I, C> extends ListCell<I> {
 
     protected final C controller;
 
@@ -22,7 +29,7 @@ public abstract class ItemCell<T, C> extends ListCell<T> {
         }
     }
 
-    protected void updateItem(final T item, final boolean empty) {
+    protected void updateItem(final I item, final boolean empty) {
         super.updateItem(item, empty);
 
         if (empty) {

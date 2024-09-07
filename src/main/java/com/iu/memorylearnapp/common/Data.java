@@ -1,5 +1,8 @@
 package com.iu.memorylearnapp.common;
 
+/**
+ * Enum which represents data resources and their corresponding paths.
+ */
 public enum Data {
     INITIAL("initial_data.json");
 

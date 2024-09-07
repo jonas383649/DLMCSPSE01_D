@@ -5,6 +5,11 @@ import com.iu.memorylearnapp.controller.MenuItemController;
 import com.iu.memorylearnapp.entities.CardSet;
 import com.iu.memorylearnapp.services.ResourceService;
 
+/**
+ * A custom {@link ItemCell} for displaying {@link CardSet} items in the menu view.
+ * This class extends {@link ItemCell} and uses {@link MenuItemController} to manage
+ * the presentation of {@link CardSet} objects.
+ */
 public class MenuItemCell extends ItemCell<CardSet, MenuItemController> {
 
     public MenuItemCell(final ResourceService resourceService) {

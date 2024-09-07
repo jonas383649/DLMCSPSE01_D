@@ -6,12 +6,26 @@ import com.iu.memorylearnapp.repositories.StatisticRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class responsible for updating and managing statistics related to card sets.
+ *
+ * <p>The {@link StatisticService} handles updates to the {@link Statistic} associated with a given
+ * {@link CardSet}. It calculates and updates various statistical metrics such as best times,
+ * average times, best moves, average moves, and the number of repetitions.</p>
+ */
 @Service
 public class StatisticService {
 
     @Autowired
     private StatisticRepository statisticRepository;
 
+    /**
+     * Updates the statistics for the given card set based on the provided time and moves.
+     *
+     * <p>This method updates the last time and moves, checks and sets new best values if applicable,
+     * recalculates average times and moves, and increments the repetition count. The updated
+     * statistics are then saved to the repository.</p>
+     */
     public void updateStatistic(final CardSet cardSet, final int time, final int moves) {
         final var statistic = cardSet.getStatistic();
 

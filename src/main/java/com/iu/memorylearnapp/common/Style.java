@@ -1,5 +1,8 @@
 package com.iu.memorylearnapp.common;
 
+/**
+ * Enum which represents style resources and their corresponding paths.
+ */
 public enum Style {
     GLOBAL("global.css");
 

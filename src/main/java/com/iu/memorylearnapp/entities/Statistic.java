@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import java.util.StringJoiner;
 
+/**
+ * Entity that represents the database object of a memory statistic entity related to a specific card set.
+ */
 @Entity
 public class Statistic {
 

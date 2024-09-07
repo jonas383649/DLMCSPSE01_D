@@ -18,6 +18,9 @@ import java.nio.file.StandardCopyOption;
 import static java.nio.file.Files.copy;
 import static java.nio.file.Files.createDirectories;
 
+/**
+ * Controller that contains the required logic of the editor item view.
+ */
 @Controller
 @Scope("prototype")
 public class EditorItemController {
@@ -39,6 +42,9 @@ public class EditorItemController {
 
     private CardPair cardPair;
 
+    /**
+     * Executes the initialization logic of the controller to set up the view elements.
+     */
     @FXML
     public void initialize() {
         firstTextField.textProperty().addListener((_, _, value) -> updateCardContent(cardPair.getFirstCard(), value));
@@ -48,11 +54,19 @@ public class EditorItemController {
         secondImageButton.setOnAction(_ -> chooseImage(cardPair.getSecondCard()));
     }
 
+    /**
+     * Delete the associated card pair of this controller.
+     */
     @FXML
     public void deleteCardPair() {
         editorController.deleteCardPair(cardPair);
     }
 
+    /**
+     * Set the new associated card pair of this controller.
+     *
+     * @param cardPair the new associated {@link CardPair} instance
+     */
     public void setCardPair(final CardPair cardPair) {
         this.cardPair = cardPair;
         updateTextFields();

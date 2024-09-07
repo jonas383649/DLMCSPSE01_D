@@ -12,6 +12,9 @@ import javafx.scene.control.ListView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+/**
+ * Controller that contains the required logic of the menu view.
+ */
 @Controller
 public class MenuController {
 
@@ -30,6 +33,9 @@ public class MenuController {
     @FXML
     private ListView<CardSet> cardSetListView;
 
+    /**
+     * Executes the initialization logic of the controller to set up the view elements.
+     */
     @FXML
     public void initialize() {
         final var cardSets = cardSetRepository.findAll();
@@ -39,6 +45,9 @@ public class MenuController {
         cardSetListView.setItems(items);
     }
 
+    /**
+     * Create a new card set entity and show it in the editor view.
+     */
     @FXML
     public void createCardSet() {
         editorController.setCardSet(new CardSet());

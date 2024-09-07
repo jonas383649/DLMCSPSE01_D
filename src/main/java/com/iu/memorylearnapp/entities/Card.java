@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 
 import java.util.StringJoiner;
 
+/**
+ * Entity that represents the database object of a memory card.
+ */
 @Entity
 public class Card {
 

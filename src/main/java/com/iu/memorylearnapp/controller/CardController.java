@@ -14,6 +14,9 @@ import org.springframework.stereotype.Controller;
 
 import java.io.File;
 
+/**
+ * Controller that contains the required logic of the memory card view.
+ */
 @Controller
 @Scope("prototype")
 public class CardController {
@@ -38,30 +41,52 @@ public class CardController {
 
     private PauseTransition coverDelay;
 
+    /**
+     * Executes the initialization logic of the controller to set up the view elements.
+     */
     @FXML
     public void initialize() {
         configCoverDelay();
         updateStyles();
     }
 
+    /**
+     * Reveal the card and use the game controller to check whether a pair of cards has been found.
+     */
     @FXML
     public void reveal() {
         performReveal();
     }
 
+    /**
+     * Cover the card.
+     */
     @FXML
     public void cover() {
         coverDelay.play();
     }
 
+    /**
+     * Remove the marking of a revealed card.
+     */
     public void unmark() {
         button.getStyleClass().remove(highlighted);
     }
 
+    /**
+     * Get the associated card of this controller.
+     *
+     * @return the current {@link Card} instance
+     */
     public Card getCard() {
         return card;
     }
 
+    /**
+     * Set the new associated card of this controller and update the corresponding view elements.
+     *
+     * @param card the new associated {@link Card} instance
+     */
     public void setCard(final Card card) {
         this.card = card;
         updateContent();

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
+/**
+ * Entity that represents the database object of a memory card set.
+ */
 @Entity
 public class CardSet {
 
