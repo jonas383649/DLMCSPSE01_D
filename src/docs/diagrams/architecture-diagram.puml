@@ -1,0 +1,85 @@
+@startuml
+skinparam componentStyle rectangle
+
+package "Memory Learn App" {
+    package "Menu" {
+        [MenuModel] as MM
+        [MenuView] as MV
+        [MenuController] as MC
+    }
+
+    package "Difficulty" {
+        [DifficultyModel] as DM
+        [DifficultyView] as DV
+        [DifficultyController] as DC
+    }
+
+    package "Game" {
+        [GameModel] as GM
+        [GameView] as GV
+        [GameController] as GC
+    }
+
+    package "Editor" {
+        [EditorModel] as EM
+        [EditorView] as EV
+        [EditorController] as EC
+    }
+
+    package "Statistic" {
+        [StatisticModel] as SM
+        [StatisticView] as SV
+        [StatisticController] as SC
+    }
+
+    () "AppDirectory" as AD
+    () "Repositories" as RP
+    () "FileChooser" as FC
+
+    database "SQL Database" as DB {
+        frame "Entities" {
+            [Card] as CE
+            [CardPair] as CPE
+            [CardSet] as CSE
+            [Statistic] as SE
+        }
+    }
+
+    MC --down-> DV : open difficulty modal
+    DC --down-> GV : open game view
+    GC --down-> SV : open statistic modal
+    SC --up-> MV : open menu view
+
+    MC --right-> EV : open editor view
+    EC --left-> MV : open menu view
+
+    MM -down-> RP : load card sets
+    EM -down-> RP : update card sets
+    SM -up-> RP : update statistics
+
+    RP ...> DB : load / save data
+    EC ...> FC : recieve images
+    EC ..> AD : save images
+    GC ..> AD : load images
+
+    MV o-> MC : uses
+    MC --> MM : manipulates
+    MM --> MV : updates
+
+    DV o-> DC : uses
+    DC --> DM : manipulates
+    DM --> DV : updates
+
+    GV o-> GC : uses
+    GC --> GM : manipulates
+    GM --> GV : updates
+
+    EV o-> EC : uses
+    EC --> EM : manipulates
+    EM --> EV : updates
+
+    SV o-> SC : uses
+    SC --> SM : manipulates
+    SM --> SV : updates
+}
+@enduml

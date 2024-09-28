@@ -1,0 +1,27 @@
+@startuml
+actor "Nutzer" as user
+
+rectangle "Memory Learn App" {
+    usecase "Memory spielen" as UC1
+    usecase "Kartenset bearbeiten" as UC2
+    usecase "Kartenset erstellen" as UC3
+
+    UC1 ..> (Kartenset auswählen) : <<include>>
+    UC2 ..> (Kartenset-Editor starten) : <<include>>
+    UC3 ..> (Kartenset-Editor starten) : <<include>>
+
+    (Kartenset auswählen) ..> (Schwierigkeitsgrad wählen) : <<include>>
+    (Schwierigkeitsgrad wählen) ..> (Spiel ausführen) : <<include>>
+    (Spiel ausführen) ..> (Statistik anzeigen) : <<include>>
+    (Spiel wiederholen) .> (Statistik anzeigen) : <<extend>>
+    (Spiel wiederholen) .> (Spiel ausführen) : <<include>>
+
+    (Kartenset-Editor starten) ..> (Kartenpaare bearbeiten) : <<include>>
+    (Kartenpaare bearbeiten) ..> (Änderungen speichern oder verwerfen) : <<include>>
+    (Kartenpaare bearbeiten) <. (Bild hinzufügen) : <<extend>>
+}
+
+user --> UC1
+user --> UC2
+user --> UC3
+@enduml

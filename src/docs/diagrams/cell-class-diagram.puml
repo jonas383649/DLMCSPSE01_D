@@ -1,0 +1,84 @@
+@startuml
+package "Memory Learn App" {
+    package renderer {
+        abstract class "ItemCell<I, C>" as IC {
+            protected final C controller
+            protected final Node root
+
+            ItemCell(final ResourceService resourceService, final View view)
+            +void updateItem(final I item, final boolean empty)
+        }
+
+        class EditorItemCell {
+            EditorItemCell(final ResourceService resourceService)
+            +void updateItem(final CardPair item, final boolean empty)
+        }
+
+        class MenuItemCell {
+            MenuItemCell(final ResourceService resourceService)
+            +void updateItem(final CardSet item, final boolean empty)
+        }
+    }
+
+    package common {
+        enum View {
+            +EDITOR_ITEM_VIEW
+            +MENU_ITEM_VIEW
+        }
+    }
+
+    package services {
+        class ResourceService {
+            +FXMLLoader createLoader(final View view)
+        }
+    }
+
+    package entities {
+        class CardPair
+        class CardSet
+    }
+
+    package controller {
+        class EditorItemController {
+            +void setCardPair(final CardPair cardPair)
+            +void deleteCardPair()
+        }
+
+        class MenuItemController {
+            +void setCardSet(final CardSet cardSet)
+            +void playCardSet()
+            +void editCardSet()
+        }
+    }
+
+    package resources {
+        class EditorItemViewFXML << (F,orchid) >>
+        class MenuItemViewFXML << (F,orchid) >>
+    }
+}
+
+package "JavaFX" {
+    class "ListCell<I>" as LC {}
+}
+
+LC <|-- IC
+IC <|.. EditorItemCell
+IC <|.. MenuItemCell
+
+EditorItemCell --> View
+MenuItemCell --> View
+
+IC ---> ResourceService
+
+ResourceService ---> EditorItemViewFXML
+ResourceService ---> MenuItemViewFXML
+
+EditorItemCell ---> EditorItemController
+MenuItemCell ---> MenuItemController
+
+EditorItemController <-- EditorItemViewFXML
+MenuItemController <-- MenuItemViewFXML
+
+EditorItemCell --> CardPair
+MenuItemCell --> CardSet
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+start
+
+partition "App Setup" {
+    if (Database available?) then (true)
+    else (false)
+        :Create Database;
+    endif
+
+    :Initialize Beans;
+}
+
+partition "Data Setup" {
+    if (Card sets present?) then (true)
+    else (false)
+        :Setup Initial Data;
+    endif
+}
+
+partition "UI Setup" {
+    :Create Context;
+    :Publish StageReadyEvent;
+    :Load Global Styles;
+}
+
+partition "Menu Module" {
+    :Show Menu Instance;
+    :Create MenuItemCell Factory;
+    :Show MenuItem Instances;
+}
+
+stop
+@enduml
