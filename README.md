@@ -46,7 +46,27 @@ The following images are used in the initial data of the Memory Learn App:
 | [Steam Engine](images/steam_engine.jpg)               | [Pixabay](https://pixabay.com/photos/steam-engine-oliver-cromwell-railway-3836021/)                                                                                       | 3836021      |
 | [Telephone](images/telephone.jpg)                     | [Pixabay](https://pixabay.com/photos/vintage-telephone-rotary-dial-phone-7418810/)                                                                                        | 7418810      |
 
-## Setup
+## Running the Application
+
+JAR executables for Java 22 and newer are available as releases. When running the JAR, ensure that a compatible JavaFX
+version is included in the module path. For more details, refer to
+the [JavaFX Getting Started page](https://openjfx.io/openjfx-docs/#modular).
+
+### Steps to Run the JAR
+
+1. **Download the JAR File:**
+   Head to the [Releases](https://github.com/jonas383649/DLMCSPSE01_D/releases) section of this repository and download
+   the latest JAR file.
+
+2. **Ensure JavaFX is in the Module Path:**
+   Make sure you have JavaFX installed and included in your module path.
+
+3. **Run the JAR File:**
+   Use the following command to run the application:
+   ```bash
+   java --module-path /path/to/javafx-sdk/lib --add-modules javafx.controls,javafx.fxml -jar memory-learn-app-1.0-SNAPSHOT.jar
+
+## Setup for Development
 
 1. **Clone the Repository:**
    ```bash
